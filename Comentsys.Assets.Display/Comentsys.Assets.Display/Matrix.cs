@@ -10,11 +10,10 @@ public class Matrix : AssetBase<Matrix>
     private const int width = 87;
     private const int height = 121;
     private const string none = "none";
-    private const string asset = "Matrix";
     private const string format = "r{0}-c{1}";
     private const string root = "Comentsys.Assets.Display.Resources";
     private static readonly Color source = Color.FromArgb(255, 33, 33, 33);
-    private static readonly byte[][] layout =
+    private static readonly byte[][] layout = 
     [
         [
             // Zero
@@ -159,16 +158,25 @@ public class Matrix : AssetBase<Matrix>
     ];
 
     /// <summary>
+    /// Get Asset
+    /// </summary>
+    /// <param name="style">Matrix Style</param>
+    /// <returns>Asset</returns>
+    private static string GetAsset(Style? style = Style.Square) =>
+        $"{style}";
+
+    /// <summary>
     /// Get Asset Resource String
     /// </summary>
     /// <param name="value">Value</param>
     /// <param name="fill">Fill Colours</param>
+    /// <param name="style">Matrix Style</param>
     /// <returns>Asset Resource String</returns>
-    private static string GetAssetResourceString(Value value, Color[]? fill = null)
+    private static string GetAssetResourceString(Value value, Color[]? fill = null, Style? style = Style.Square)
     {
         var index = 0;
         var matrix = layout[(int)value];
-        var content = AsString(root, Helpers.Path(asset, Value.Filled));
+        var content = AsString(root, Helpers.Path(GetAsset(style), Value.Filled));
         var svg = Helpers.GetSvgDocument(content, out XmlNamespaceManager manager);
         var colours = Helpers.Pad(fill, source, matrix.Length);        
         for(var row = 0; row < rows; row++)
@@ -190,9 +198,10 @@ public class Matrix : AssetBase<Matrix>
     /// Get Asset Resource
     /// </summary>
     /// <param name="value">Value</param>
+    /// <param name="style">Style</param>
     /// <returns>Asset Resource</returns>
-    public static AssetResource Get(Value value) =>
-        new(AsStream(root, Helpers.Path(asset, value)) ??
+    public static AssetResource Get(Value value, Style? style = Style.Square) =>
+        new(AsStream(root, Helpers.Path(GetAsset(style), value)) ??
             new MemoryStream(), height, width);
 
     /// <summary>
@@ -200,9 +209,10 @@ public class Matrix : AssetBase<Matrix>
     /// </summary>
     /// <param name="value">Value</param>
     /// <param name="fill">Fill Colour</param>
+    /// <param name="style">Style</param>
     /// <returns>Asset Resource</returns>
-    public static AssetResource Get(Value value, Color? fill) =>
-        new(AsStream(root, Helpers.Path(asset, value), source, fill) ??
+    public static AssetResource Get(Value value, Color? fill, Style? style = Style.Square) =>
+        new(AsStream(root, Helpers.Path(GetAsset(style), value), source, fill) ??
             new MemoryStream(), height, width);
 
     /// <summary>
@@ -210,34 +220,38 @@ public class Matrix : AssetBase<Matrix>
     /// </summary>
     /// <param name="value">Value</param>
     /// <param name="fill">Fill Colours</param>
+        /// <param name="style">Style</param>
     /// <returns>Asset Resource</returns>
-    public static AssetResource Get(Value value, Color[]? fill) =>
-        new(FromString(GetAssetResourceString(value, fill)) ??
+    public static AssetResource Get(Value value, Color[]? fill, Style? style = Style.Square) =>
+        new(FromString(GetAssetResourceString(value, fill, style)) ??
             new MemoryStream(), height, width);
 
     /// <summary>
     /// Get Asset Resource
     /// </summary>
     /// <param name="value">Value</param>
+    /// <param name="style">Style</param>
     /// <returns>Asset Resource</returns>
-    public static AssetResource Get(int value) =>
-        Get(Helpers.GetValue(value));
+    public static AssetResource Get(int value, Style? style = Style.Square) =>
+        Get(Helpers.GetValue(value), style);
 
     /// <summary>
     /// Get Asset Resource
     /// </summary>
-    /// <param name="value">Value</param>
+    /// <param name="value">Value</param>   
     /// <param name="fill">Fill Colour</param>
+    /// <param name="style">Style</param>
     /// <returns>Asset Resource</returns>
-    public static AssetResource Get(int value, Color? fill) =>
-        Get(Helpers.GetValue(value), fill);
+    public static AssetResource Get(int value,Color? fill, Style? style = Style.Square) =>
+        Get(Helpers.GetValue(value), fill, style);
 
     /// <summary>
     /// Get Asset Resource
     /// </summary>
     /// <param name="value">Value</param>
     /// <param name="fill">Fill Colours</param>
+    /// <param name="style">Style</param> 
     /// <returns>Asset Resource</returns>
-    public static AssetResource Get(int value, Color[]? fill) =>
-        Get(Helpers.GetValue(value), fill);
+    public static AssetResource Get(int value, Color[]? fill, Style? style = Style.Square) =>
+        Get(Helpers.GetValue(value), fill, style);
 }

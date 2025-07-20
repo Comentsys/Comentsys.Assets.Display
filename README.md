@@ -4,6 +4,10 @@
 
 ## Change Log
 
+### Version 2.0.0
+
+- Updated Display for Matrix with Style including Square, Circle, Hexagon and Octagon
+
 ### Version 1.0.0
 
 - Initial Release
@@ -14,6 +18,10 @@
 
 You can also supply an **Array** of **Colours** or a single **Colour** to customise the **Segment** by replacing **Fill** used in 
 the **Asset** to the various **Methods** to `Get` an **Asset Resource**.
+
+### Example
+
+![Segment](Assets/display-segment.png)
 
 ### Get(value, fill)
 
@@ -93,12 +101,29 @@ Asset Resource
 
 ## Matrix
 
-`Matrix` represents a **Five-by-Seven Dot Matrix Display**
+`Matrix` represents a **Five-by-Seven Dot Matrix Display** where you can select a `Style` for each **Pixel** of the `Matrix` from `Square`, `Circle`, `Hexagon` and `Octagon`.
 
-You can also supply an **Array** of **Colours** or a single **Colour** to customise the **Matrix** by replacing **Fill** used in 
-the **Asset** to the various **Methods** to `Get` an **Asset Resource**.
+You can also supply an **Array** of **Colours** or a single **Colour** to customise the **Matrix** by replacing **Fill** used in the **Asset** to the various **Methods** to `Get` an **Asset Resource**.
 
-### Get(value, fill)
+### Examples
+
+#### Matrix - Square
+
+![Matrix - Square](Assets/display-square.png)
+
+#### Matrix - Circle
+
+![Matrix - Circle](Assets/display-circle.png)
+
+#### Matrix - Hexagon
+
+![Matrix - Hexagon](Assets/display-hexagon.png)
+
+#### Matrix - Octagon
+
+![Matrix - Octagon](Assets/display-octagon.png)
+
+### Get(value, fill, style)
 
 Get Asset Resource
 
@@ -106,12 +131,13 @@ Get Asset Resource
 | ---- | ----------- |
 | value | *Comentsys.Assets.Display.Value*<br>Value |
 | fill | *System.Drawing.Color[]*<br>Fill Colours |
+| style | *Comentsys.Assets.Display.Style*<br>Style |
 
 #### Returns
 
 Asset Resource
 
-### Get(value, fill)
+### Get(value, fill, style)
 
 Get Asset Resource
 
@@ -119,24 +145,26 @@ Get Asset Resource
 | ---- | ----------- |
 | value | *Comentsys.Assets.Display.Value*<br>Value |
 | fill | *System.Nullable{System.Drawing.Color}*<br>Fill Colour |
+| style | *Comentsys.Assets.Display.Style*<br>Style |
 
 #### Returns
 
 Asset Resource
 
-### Get(value)
+### Get(value, style)
 
 Get Asset Resource
 
 | Name | Description |
 | ---- | ----------- |
 | value | *Comentsys.Assets.Display.Value*<br>Value |
+| style | *Comentsys.Assets.Display.Style*<br>Style |
 
 #### Returns
 
 Asset Resource
 
-### Get(value, fill)
+### Get(value, fill, style)
 
 Get Asset Resource
 
@@ -144,12 +172,13 @@ Get Asset Resource
 | ---- | ----------- |
 | value | *System.Int32*<br>Value |
 | fill | *System.Drawing.Color[]*<br>Fill Colours |
+| style | *Comentsys.Assets.Display.Style*<br>Style |
 
 #### Returns
 
 Asset Resource
 
-### Get(value, fill)
+### Get(value, fill, style)
 
 Get Asset Resource
 
@@ -157,18 +186,20 @@ Get Asset Resource
 | ---- | ----------- |
 | value | *System.Int32*<br>Value |
 | fill | *System.Nullable{System.Drawing.Color}*<br>Fill Colour |
+| style | *Comentsys.Assets.Display.Style*<br>Style |
 
 #### Returns
 
 Asset Resource
 
-### Get(value)
+### Get(value, style)
 
 Get Asset Resource
 
 | Name | Description |
 | ---- | ----------- |
 | value | *System.Int32*<br>Value |
+| style | *Comentsys.Assets.Display.Style*<br>Style |
 
 #### Returns
 
@@ -234,19 +265,39 @@ Represents Blank ( )
 
 Represents Filled
 
+## Style
+
+`Style` represents the **Matrix Style**  to represent the **Shape** of each **Pixel** of the `Matrix`.
+
+### Square
+
+Square
+
+### Circle
+
+Circle
+
+### Hexagon
+
+Hexagon
+
+### Octagon
+
+Octagon
+
 ## Licence
 
 ```
-MIT License
+The MIT License (MIT)
 
 Copyright (c) Comentsys
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies
+of the Software, and to permit persons to whom the Software is furnished to do
+so, subject to the following conditions:
 
 The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
